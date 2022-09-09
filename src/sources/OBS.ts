@@ -1,5 +1,5 @@
 import { default as ObsWebSocket4 } from 'obs-websocket-js';
-import { default as ObsWebSocket5Module } from 'obs-websocket-js-5';
+import OBSWebSocket, { default as ObsWebSocket5Module } from 'obs-websocket-js-5';
 import { logger } from '..';
 import { RegisterTallyInput } from "../_decorators/RegisterTallyInput.decorator";
 import { Source } from '../_models/Source';
@@ -402,7 +402,7 @@ export class OBSSource extends TallyInput {
 
     private initialize_v5() {
         //hacky fix for obs-websocket-js-5 exported as default => default => function
-        this.obsClient5 = new (ObsWebSocket5Module as any).default();
+        this.obsClient5 = new OBSWebSocket();
 
         this.obsClient5.on("StreamStateChanged", (data) => {
             if (data.outputActive) {
